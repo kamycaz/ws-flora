@@ -1,4 +1,4 @@
-package com.zopitek.flora.entity.location;
+package com.zopitek.flora.entity.params;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -9,12 +9,12 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "t_province")
+@Table(name = "t_sale_type")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Province implements Serializable {
+public class SaleType implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,10 +23,11 @@ public class Province implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "cod")
+    private String cod;
 
-    @ManyToOne
-    @JoinColumn(name = "id_region")
-    private Region region;
+    @Column(name = "description")
+    private String description;
+
+
 }

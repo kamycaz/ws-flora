@@ -1,8 +1,7 @@
 package com.zopitek.flora.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zopitek.flora.entity.location.Town;
+import com.zopitek.flora.entity.params.SaleType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,16 +10,17 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "t_client")
+@Table(name = "t_sale_line")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Client implements Serializable {
+
+public class SaleLine implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,27 +29,25 @@ public class Client implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "com_name")
-    private String comercialName;
-
-    @Column(name = "fis_name")
-    private String fiscalName;
-
-    @Column(name = "CIF")
-    private String cif;
-
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "CP")
-    private String CP;
-
     @ManyToOne
-    @JoinColumn(name="id_town")
-    private Town town;
+    @JoinColumn(name = "id_product")
+    private Product product;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "quantity")
+    private Integer quantity;
+
+    @Column(name = "prize")
+    private BigDecimal taxAmount;
+
+    @Column(name = "IVA")
+    private BigDecimal iva;
+
+    @Column(name = "discount")
+    private BigDecimal discount;
+
+    @Column(name = "totalAmount")
+    private BigDecimal totalAmount;
+
 
     @Column(name = "create_at")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

@@ -26,6 +26,7 @@ public class Town implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "id_province")
-    private Integer idProvince;
+    @ManyToOne
+    @JoinColumn(name = "id_province")
+    private Province province;
 }
