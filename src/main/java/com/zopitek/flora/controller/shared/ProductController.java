@@ -31,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<?> getProduct() throws Exception {
+    public ResponseEntity<?> getProducts() throws Exception {
         try {
             return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
         } catch (Exception e){
@@ -39,6 +39,17 @@ public class ProductController {
         }
 
     }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getProduct(@PathVariable Long id) throws Exception {
+        try {
+            return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(new ErrorResponseDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
 
     @PutMapping("/update")
     public ResponseEntity<?> updateProduct(@RequestBody Product product) throws Exception {
