@@ -102,3 +102,19 @@ public Page<Tdc> findByCriteria(String cups, Integer status, Integer satisfaccio
 							return new ResponseEntity<>(new ErrorResponseDTO(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
 						}
 
+
+
+SELECT
+						PER.X_PERSONA\r\n"
+						,PER.LETINIIEP || PER.N_IEP || PER.LETFINIEP DNI\r\n"
+						,PER.NOMBRE\r\n"
+						,PER.APELLIDO1\r\n"
+						,PER.APELLIDO2\r\n"
+						,USU.NOMBRE_USUARIO_USUARIO NOMBRE_USUARIO\r\n"
+						,MOC.L_GENBAJ\r\n"
+						FROM USUARIO_SIRHUS USU, WEPERSONAS PER\r\n"
+						+ "left join IHMOTCESBAJ MOC on PER.MOC_C_MOTCESBAJ = MOC.C_MOTCESBAJ\r\n"
+						+ "WHERE  (PER.LETINIIEP || PER.N_IEP || PER.LETFINIEP) = :dni \r\n"
+						+ "AND USU.X_PERSONA = PER.X_PERSONA",
+			 resultClass=Usuario.class)
+
