@@ -1,0 +1,115 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "pruebas spring",
+    "dateExported": "2023-05-02T09:59:28.353Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "4ce10737-1d27-457f-a515-7b7c8652b2e4",
+            "colId": "34b3a79e-7b09-4017-bb0f-17daf7a3a323",
+            "containerId": "",
+            "name": "add product",
+            "url": "http://localhost:8045/private/product/add",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-03-22T08:47:15.349Z",
+            "modified": "2023-03-22T08:50:30.724Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\" : \"1 X 12 Huevos S\",\n  \"description\" : \"Huevos camperos tamaño S\",\n  \"prize\" : 3.5,\n  \"iva\" : 10\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "5d87e01c-d9a6-4cb9-9e57-3249d61fb62a",
+            "colId": "34b3a79e-7b09-4017-bb0f-17daf7a3a323",
+            "containerId": "",
+            "name": "get products",
+            "url": "http://localhost:8045/private/product/get",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-03-22T09:06:58.669Z",
+            "modified": "2023-03-22T09:07:12.259Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "abb3810e-482a-4148-be9d-7e36c2c6cbf1",
+            "colId": "34b3a79e-7b09-4017-bb0f-17daf7a3a323",
+            "containerId": "",
+            "name": "add client",
+            "url": "http://localhost:8045/private/client/add",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-03-22T11:04:01.992Z",
+            "modified": "2023-03-22T11:27:25.650Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"comercialName\" : \"Tienda Paco\",\n  \"fiscalName\" : \"Franciso Marin Salzillo\",\n  \"cif\" : \"A2342344\",\n  \"address\" : \"Avenida de la Constitucion, n1\",\n  \"cp\" : \"30530\",\n  \"phone\" : \"634554638\",\n  \"town\" : {\n    \"id\" : 1\n  }\n\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "aaf4c447-ecfc-4cd0-9ac9-c9ebcd078fa4",
+            "colId": "34b3a79e-7b09-4017-bb0f-17daf7a3a323",
+            "containerId": "",
+            "name": "get clients",
+            "url": "http://localhost:8045/private/client/get",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2023-03-22T11:19:27.870Z",
+            "modified": "2023-03-22T11:19:37.168Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "302a3561-f512-4263-89d1-5a1c26ea4aca",
+            "colId": "34b3a79e-7b09-4017-bb0f-17daf7a3a323",
+            "containerId": "",
+            "name": "get basic clients",
+            "url": "http://localhost:8045/private/client/getBasic",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-03-22T11:56:53.943Z",
+            "modified": "2023-03-22T11:57:05.936Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "c9cd4d03-e7d2-42e4-9f86-e97d22a440a4",
+            "colId": "34b3a79e-7b09-4017-bb0f-17daf7a3a323",
+            "containerId": "",
+            "name": "get client by id",
+            "url": "http://localhost:8045/private/client/get/3",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-03-22T12:34:28.344Z",
+            "modified": "2023-03-22T12:42:25.846Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "aedf2eae-1a9c-4c68-b522-61964aaaf18f",
+            "colId": "34b3a79e-7b09-4017-bb0f-17daf7a3a323",
+            "containerId": "",
+            "name": "get product by id",
+            "url": "",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-03-22T12:43:48.815Z",
+            "modified": "2023-03-22T12:43:48.815Z",
+            "headers": []
+        }
+    ]
+}
