@@ -2,6 +2,7 @@ package com.zopitek.flora.controller.shared;
 
 import com.zopitek.flora.entity.Product;
 import com.zopitek.flora.model.ErrorResponseDTO;
+import com.zopitek.flora.model.StandarResponseDTO;
 import com.zopitek.flora.params.ErrorMessages;
 import com.zopitek.flora.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/private/product")
+@CrossOrigin("*")
 public class ProductController {
 
     @Autowired
@@ -20,12 +22,16 @@ public class ProductController {
     public ResponseEntity<?> addProduct(@RequestBody Product product) throws Exception {
         try {
             if (product != null) {
-                return new ResponseEntity<>(productService.save(product), HttpStatus.OK);
+               if(productService.save(product)==1) {
+                   return new ResponseEntity<>(new StandarResponseDTO("OK","Producto añadido correctamente"), HttpStatus.OK);
+               } else {
+                   return new ResponseEntity<>(new StandarResponseDTO("KO", ErrorMessages.WRITE_ERROR), HttpStatus.BAD_REQUEST);
+               }
             } else {
-                return new ResponseEntity<>(new ErrorResponseDTO(ErrorMessages.MISSING_PARAMS), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new StandarResponseDTO("KO",ErrorMessages.MISSING_PARAMS), HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new StandarResponseDTO("KO",e.getMessage()), HttpStatus.BAD_REQUEST);
 
         }
     }
@@ -35,7 +41,7 @@ public class ProductController {
         try {
             return new ResponseEntity<>(productService.findAll(), HttpStatus.OK);
         } catch (Exception e){
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<>(new StandarResponseDTO("KO",e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -45,7 +51,17 @@ public class ProductController {
         try {
             return new ResponseEntity<>(productService.findById(id), HttpStatus.OK);
         } catch (Exception e){
-            return new ResponseEntity<>(new ErrorResponseDTO(e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new StandarResponseDTO("KO",e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+    @GetMapping("/getByName/{name}")
+    public ResponseEntity<?> getProduct(@PathVariable String name) throws Exception {
+        try {
+            return new ResponseEntity<>(productService.findByName(name), HttpStatus.OK);
+        } catch (Exception e){
+            return new ResponseEntity<>(new StandarResponseDTO("KO",e.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }
@@ -58,13 +74,13 @@ public class ProductController {
                 if(product.getId() != null) {
                     return new ResponseEntity<>(productService.save(product), HttpStatus.OK);
                 } else {
-                    return new ResponseEntity<>(new ErrorResponseDTO(ErrorMessages.MISSING_PARAMS), HttpStatus.BAD_REQUEST);
+                    return new ResponseEntity<>(new StandarResponseDTO("KO",ErrorMessages.MISSING_PARAMS), HttpStatus.BAD_REQUEST);
                 }
             } else {
-                return new ResponseEntity<>(new ErrorResponseDTO(ErrorMessages.MISSING_PARAMS), HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(new StandarResponseDTO("KO",ErrorMessages.MISSING_PARAMS), HttpStatus.BAD_REQUEST);
             }
         } catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new StandarResponseDTO("KO",e.getMessage()), HttpStatus.BAD_REQUEST);
 
         }
     }

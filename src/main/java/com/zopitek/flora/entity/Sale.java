@@ -48,6 +48,12 @@ public class Sale implements Serializable {
     @Column(name = "total_amount")
     private BigDecimal totalAmount;
 
+    @Column(name = "cod_invoice")
+    private String codInvoice;
+
+    @Column(name = "paid")
+    private Boolean paid;
+
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_sale", referencedColumnName = "id")

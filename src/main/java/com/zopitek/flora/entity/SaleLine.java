@@ -37,13 +37,13 @@ public class SaleLine implements Serializable {
     private Integer quantity;
 
     @Column(name = "prize")
-    private BigDecimal taxAmount;
+    private BigDecimal prize;
 
     @Column(name = "IVA")
-    private BigDecimal iva;
+    private int iva;
 
     @Column(name = "discount")
-    private BigDecimal discount;
+    private int discount;
 
     @Column(name = "totalAmount")
     private BigDecimal totalAmount;

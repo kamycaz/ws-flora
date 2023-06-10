@@ -2,6 +2,7 @@ package com.zopitek.flora.service.imp;
 
 import com.zopitek.flora.entity.Client;
 import com.zopitek.flora.entity.Product;
+import com.zopitek.flora.model.projection.ProductResponse;
 import com.zopitek.flora.params.ErrorMessages;
 import com.zopitek.flora.repository.ProductRepository;
 import com.zopitek.flora.service.ProductService;
@@ -19,9 +20,10 @@ public class ProductServiceImp implements ProductService {
     private ProductRepository productRepository;
 
     @Override
-    public Product save(Product product) throws Exception {
+    public Integer save(Product product) throws Exception {
         try {
-           return productRepository.save(product);
+            productRepository.save(product);
+            return 1;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
@@ -46,6 +48,15 @@ public class ProductServiceImp implements ProductService {
                 return (Product) optinal.get();
             }
         }  catch (Exception e){
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ProductResponse> findByName(String name) throws Exception {
+        try {
+            return productRepository.findBasicListByName(name);
+        } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }

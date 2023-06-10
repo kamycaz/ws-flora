@@ -2,6 +2,7 @@ package com.zopitek.flora.service.imp;
 
 import com.zopitek.flora.entity.Client;
 import com.zopitek.flora.model.dto.BasicDTO;
+import com.zopitek.flora.model.dto.ClientBasicDTO;
 import com.zopitek.flora.model.projection.ClientBasicResponse;
 import com.zopitek.flora.params.ErrorMessages;
 import com.zopitek.flora.repository.ClientRepository;
@@ -25,9 +26,10 @@ public class ClientServiceImp implements ClientService {
     private ClassMapper classMapper;
 
     @Override
-    public Client save(Client client) throws Exception {
+    public Integer save(Client client) throws Exception {
       try{
-          return  clientRepository.save(client);
+          clientRepository.save(client);
+          return 1;
       }catch (Exception e) {
           throw new Exception(e.getMessage());
           }
@@ -52,9 +54,9 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
-    public List<BasicDTO> findBasicList() throws Exception {
+    public List<ClientBasicDTO> findBasicList() throws Exception {
         try {
-            List<BasicDTO> dtoList = new ArrayList<>();
+            List<ClientBasicDTO> dtoList = new ArrayList<>();
             List<ClientBasicResponse> list = clientRepository.findBasicList();
             for( ClientBasicResponse client : list){
                 dtoList.add(classMapper.clientBasicResponseToClientBasicDTO(client));
@@ -66,7 +68,21 @@ public class ClientServiceImp implements ClientService {
     }
 
     @Override
-    public Client findById(Long id) throws Exception {
+    public List<ClientBasicDTO> findBasicListByName(String name) throws Exception {
+        try {
+            List<ClientBasicDTO> dtoList = new ArrayList<>();
+            List<ClientBasicResponse> list = clientRepository.findBasicListByName(name);
+            for( ClientBasicResponse client : list){
+                dtoList.add(classMapper.clientBasicResponseToClientBasicDTO(client));
+            }
+            return dtoList;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    public Client findById(Integer id) throws Exception {
         try {
             Optional client = clientRepository.findById(id);
             if(client.isEmpty()){
